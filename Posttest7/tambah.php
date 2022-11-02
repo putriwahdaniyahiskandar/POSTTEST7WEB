@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (!isset($_SESSION['Login'])) {
+    header("Location: Login.php");
+    exit;
+}
+
 require "config.php";
 
 if (isset($_POST['submit'])) {

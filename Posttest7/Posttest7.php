@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['Login'])) {
+    header("Location: Login.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +22,11 @@
         <div class="header-list">
 
             <ul> 
-                <li><a href="Login.php"
-                    style="text-decoration:none;">Login</a></li> 
+                <li><a href="Logout.php" style="text-decoration: none;">Logout</a></li>
                 <li class="Mode"> DarkMode</li>
                 <li> <a href="About.php"
                     style="text-decoration:none;"> About Me</a></li>
-                <li><a href="http://localhost/Posttest7/Posttest7.php"
+                <li><a href="http://localhost/POSTTEST7WEB/Posttest7/Posttest7.php"
                     style="text-decoration:none ;">Home</a></li> 
             </ul>
         </div>

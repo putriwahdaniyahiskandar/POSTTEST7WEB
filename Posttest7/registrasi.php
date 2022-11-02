@@ -1,3 +1,46 @@
+<?php
+require "config.php";
+if(isset($_POST['Regissubmit'])){
+    $nama = $_POST['Regisnama'];
+    $username = $_POST['Regisusername'];
+    $password = $_POST['Regispassword'];
+    $konfirmasi = $_POST['Konfirpassword'];
+    $query = mysqli_query($db, "SELECT * FROM akun WHERE username = '$username'");
+    if(mysqli_fetch_assoc($query)){
+        echo "
+        <script>
+            alert('Username sudah digunakan');
+        </script>
+        ";
+    } else {
+        if($password == $konfirmasi){
+            $password = password_hash($password, PASSWORD_DEFAULT);
+            $query = mysqli_query($db, "INSERT INTO akun VALUES ('','$nama', '$username', '$password')");
+            if($query){
+                echo "
+                <script>
+                    alert('Registrasi Berhasil');
+                    document.location.href = 'Login.php';
+                </script>
+                ";
+            } else {
+                echo "
+                <script>
+                    alert('Registrasi Failed');
+                </script>
+                ";
+            }
+        } else {
+            echo "
+            <script>
+                alert('Password dan konfirmasi password anda berbeda');
+            </script>
+            ";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +59,7 @@
             <ul>
                 <li> <a href="About.php"
                     style="text-decoration:none;"> About Me</a></li>
-                <li><a href="http://localhost/Posttest7/Posttest7.php"
+                <li><a href="http://localhost/POSTTEST7WEB/Posttest7/Posttest7.php"
                     style="text-decoration:none ;">Home</a></li> 
                 <li class="Mode">DarkMode</li>
             </ul>
@@ -24,11 +67,9 @@
     </div> <br><br>
     <div class = "Regis">
     <center>
-    <form action="Login.php" method="post">
-        <label for="RegisEmail">Email</label> <br>
-        <input type="text"name = "RegisEmail" id="Email" class = "Regis-css"> <br><br>
-        <label for="RegisDomisili">Domisili</label> <br>
-        <input type="text"name = "RegisDomisili" id="Domisili" class = "Regis-css"> <br><br>
+    <form action="" method="post">
+        <label for="Regisnama">Nama</label> <br>
+        <input type="text"name = "Regisnama" id="nama" class = "Regis-css"> <br><br>
         <label for="Regisusername">Username</label> <br>
         <input type="text"name = "Regisusername" id="username" class = "Regis-css"> <br><br>
         <label for="Regispassword">Password</label> <br>

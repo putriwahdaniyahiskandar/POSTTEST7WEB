@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])) {
+    header("Location: Login.php");
+}
+
 require "config.php";
 if(isset($_GET['id'])){
     $query = mysqli_query($db,"SELECT * FROM pendaftar JOIN cleaning on pendaftar.id = cleaning.id WHERE pendaftar.id =$_GET[id]");

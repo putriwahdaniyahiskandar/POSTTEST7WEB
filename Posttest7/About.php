@@ -1,11 +1,12 @@
-<?php 
+<?php
+
 session_start();
-if(isset($_POST["login"])){
-    $_SESSION["Regissubmit"] = $_POST["Regissubmit"];
-    $_SESSION["RegisEmail"] = $_POST["RegisEmail"];
-    $_SESSION["RegisDomisili"] = $_POST["RegisDomisili"];
-    $_SESSION["Regisusername"] = $_POST["Regisusername"];
+if (!isset($_SESSION['Login'])) {
+    header("Location: Login.php");
+    exit;
 }
+$nama = $_SESSION["nama"];
+$username = $_SESSION["username"];  
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +26,7 @@ if(isset($_POST["login"])){
             <ul>
                 <li> <a href="About.php"
                     style="text-decoration:none;"> About Me</a></li>
-                <li><a href="http://localhost/Posttest7/Posttest7.php"
+                <li><a href="http://localhost/POSTTEST7WEB/Posttest7/Posttest7.php"
                     style="text-decoration:none ;">Home</a></li> 
                 
             </ul>
@@ -37,24 +38,19 @@ if(isset($_POST["login"])){
             
            <tbody>
             <tr>
-                <td>Email</td>
+                <td>Nama</td>
                 <td>:</td>
-                <td><?php echo $_SESSION["RegisEmail"]; ?></td>
-            </tr>
-            <tr>
-                <td>Domisli</td>
-                <td>:</td>
-                <td><?php echo $_SESSION["RegisDomisili"]; ?></td>
+                <td><?php echo $nama; ?></td>
             </tr>
             <tr>
                 <td>Username</td>
                 <td>:</td>
-                <td><?php echo $_SESSION["Regisusername"]; ?></td>
+                <td><?php echo $username; ?></td>
             </tr>
            </tbody>
     </table><br><br>
     
-    <p>Isi Pendaftaran Penyewaan Jasa Home Cleaning <a href="index.php" style="text-decoration:none ;">Klik Disini</a></p>
+    <p>Isi Pendaftaran Penyewaan Jasa Home Cleaning <a href="penyewa.php" style="text-decoration:none ;">Klik Disini</a></p>
     </div>
 </body>
 </html>
